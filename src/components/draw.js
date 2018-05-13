@@ -13,26 +13,66 @@ export class Draw extends React.Component {
   }
 
 componentDidMount() {
-  setTimeout( function() {console.log(fabric)} , 2000);
-  //console.log(fabric);
-//    var canvas = this.__canvas = new fabric.Canvas('c', {
-//    isDrawingMode: true
-//  });
+  var canvas = new window.fabric.Canvas('draw', {
+    isDrawingMode: true
+  });
+  
+  var $ = function(id){return document.getElementById(id)};
 
+  var drawingColorEl = $('drawing-color'),
+     // drawingLineWidthEl = $('drawing-line-width'),
+      clearEl = $('clear-canvas');
+
+  clearEl.onclick = function() { canvas.clear() };
+
+  drawingColorEl.onchange = function() {
+    canvas.freeDrawingBrush.color = this.value;
+  };
+
+  var debug = $('debug');
+
+  debug.onclick = function() {
+    console.log(JSON.stringify(canvas));
+    console.log(canvas.isDrawingMode);
+  };
+
+  if (canvas.freeDrawingBrush) {
+    canvas.freeDrawingBrush.color = drawingColorEl.value;
+    canvas.freeDrawingBrush.width = 10;
+  }
 }
+
+ reset(event) {
+    event.preventDefault();
+    this.props.history.push(`/guess`);
+  }
+
 
   render() {
     return (
-        <div>
-        <script src="../../public/javascripts/fabric.min.js"></script>
+        <div id="bd-wrapper">
+          <h2>Drawing</h2><br/>
+          <canvas id="draw" width="500" height="500"></canvas>
+          <br/>
+        
+          <div className="canvas-container">
+            <button id="clear-canvas" className="btn btn-info">Clear</button><br/>
+            <button id="debug" className="btn btn-info">Display JSON</button><br/>
+            
+            <div>
+              <label htmlFor="drawing-color">Line color:</label>
+              <input type="color" defaultValue="#665666" id="drawing-color"/><br/>
+            </div>
       
-        <canvas id="c" width="500" height="500"></canvas>
+            <div>
+              <br/><br/>
+              <label htmlFor="drawing-vocabulary">Vocabulary</label><br/>
+              <input type="text" id="drawing-vocabulary"/><br/>
+              <button id="submit" className="btn btn-info">Submit</button>
+            </div>
           </div>
-
-
-
+        </div>
     );
-
   }
 }
 

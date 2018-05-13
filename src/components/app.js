@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Home from './home';
 import Draw from './draw';
+import Guess from './guess';
 
 import {logo} from '../logo.svg';
 import './app.css';
@@ -17,7 +18,7 @@ export default function App(props) {
         <main>
           <Route exact path="/" component={Home} />  
           <Route exact path="/draw" component={Draw} />
-          <Route exact path="/guess" component={Draw} />
+          <Route exact path="/guess" component={Guess} />
         </main>
       </div>
     </Router>
