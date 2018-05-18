@@ -13,29 +13,11 @@ export const reducer = (state=initialState, action) => {
 	
 	let correctAnswer, pixels;
 
-/*
-	fetch(API_BASE_URL+'/random', {})
-    .then(res => {
-      if(!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      return res.json();
-    }).then(data => {
-      correctAnswer = data.vocab;
-      //this.restartGame(answer);
-      pixels = {"objects": JSON.parse(data.pixels)};
-      // setState here
-      canvas.loadFromJSON({"objects": JSON.parse(data.pixels)});
-      console.log("vocab: "+correctAnswer);
-    //  console.log(data.pixels);
-    	return Object.assign({}, state, {
-			correctAnswer: 'mom'
-		});
-		
-    }); 
-*/
+		console.log("restartAnswer: "+action.correctAnswer);
+	
+
 		return Object.assign({}, state, {
-			correctAnswer: 'mom'
+			correctAnswer: action.correctAnswer
 		});
 		
 	}

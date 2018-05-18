@@ -14,10 +14,6 @@ export class Guess extends React.Component {
     
   }
 
-componentWillMount() {
-  
-}
-
 componentDidMount() {
 canvas = new window.fabric.Canvas('guess', {
     isDrawingMode: false
@@ -34,7 +30,7 @@ canvas = new window.fabric.Canvas('guess', {
       return res.json();
     }).then(data => {
       answer = data.vocab;
-      this.restartGame(answer);
+      this.props.dispatch(restartGame(answer));
       //this.props.correctAnswer = answer;
       pixels = {"objects": JSON.parse(data.pixels)};
       canvas.loadFromJSON({"objects": JSON.parse(data.pixels)});
@@ -46,15 +42,9 @@ canvas = new window.fabric.Canvas('guess', {
     }
 
  goToGuess(event) {
-
-
     event.preventDefault();
-
-canvas.dispose();
-  
-      this.componentDidMount();
-    
-    console.log("guess..");
+    canvas.dispose();
+    this.componentDidMount();
   }
 
   render() {
