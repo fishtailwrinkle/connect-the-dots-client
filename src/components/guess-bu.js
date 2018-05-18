@@ -6,24 +6,20 @@ import {restartGame} from '../actions';
 
 const {API_BASE_URL} = require('../config');
 
-var canvas;
-
 export class Guess extends React.Component {
   restartGame() {
     this.props.dispatch(restartGame());
     
   }
 
-componentWillMount() {
-  
-}
-
 componentDidMount() {
-canvas = new window.fabric.Canvas('guess', {
+  var canvas = new window.fabric.Canvas('guess', {
     isDrawingMode: false
   });
 
   let answer, pixels;
+
+  console.log(API_BASE_URL);
 
   fetch(API_BASE_URL+'/random', {
   })
@@ -38,24 +34,11 @@ canvas = new window.fabric.Canvas('guess', {
       //this.props.correctAnswer = answer;
       pixels = {"objects": JSON.parse(data.pixels)};
       canvas.loadFromJSON({"objects": JSON.parse(data.pixels)});
-      
+  
       console.log("vocab: "+answer);
     //  console.log(data.pixels);
-    });
-
-    }
-
- goToGuess(event) {
-
-
-    event.preventDefault();
-
-canvas.dispose();
-  
-      this.componentDidMount();
-    
-    console.log("guess..");
-  }
+    }); 
+}
 
   render() {
     return (
@@ -65,12 +48,10 @@ canvas.dispose();
           <br/>
         
           <div className="canvas-container">
-            <GuessForm />
             
-<button
-          onClick={e => this.goToGuess(e)}>Start a nw game</button>    
-        
-
+            <GuessForm />
+            <button
+          onClick={() => this.restartGame()}>Start a new game</button>
           </div>
         </div>
     );

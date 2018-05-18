@@ -6,12 +6,7 @@ import {restartGame} from '../actions';
 export function Nav(props) {
 	return (
 		<div>
-			<button
-				onClick={() => props.dispatch(restartGame())}
-			>
-				Guess
-			</button>
-			<button>Draw</button>
+			<h1>Nice drawing!</h1>
 		</div>
 	);
 }

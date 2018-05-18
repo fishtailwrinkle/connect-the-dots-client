@@ -2,6 +2,18 @@ pre {
   margin-left: 15px !important 
 }
 
+img {
+  max-width: 799px;
+  margin: 0, auto;
+}
+
+body {
+  /*background-image: url("../images/pencil.jpg");*/
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
 #drawing-mode {
   margin-bottom: 10px;
   vertical-align: top;

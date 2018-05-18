@@ -1,26 +1,48 @@
-import {RESTART_GAME, SET_GUESS} from '../actions';
-
-const answers = ['post', 'toy', 'ocean', 'book', 'apple', 'donut'];
+import * as actions from '../actions';
+const {API_BASE_URL} = require('../config');
 
 const initialState = {
-	correctAnswer: answers[Math.floor(Math.random() * 6)],
+	correctAnswer: 'book',
+	pixels: 'none',
 	guess: []
 };
-//Retrieve from database?
 
-export default (state=initialState, action) => {
+export const reducer = (state=initialState, action) => {
+  
+	if (action.type === actions.RESTART_GAME) {
 	
+	let correctAnswer, pixels;
 
-	if (action.type === RESTART_GAME) {
-	//console.log(index);
-	initialState.correctAnswer = answers[Math.floor(Math.random() * 6)];
+/*
+	fetch(API_BASE_URL+'/random', {})
+    .then(res => {
+      if(!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    }).then(data => {
+      correctAnswer = data.vocab;
+      //this.restartGame(answer);
+      pixels = {"objects": JSON.parse(data.pixels)};
+      // setState here
+      canvas.loadFromJSON({"objects": JSON.parse(data.pixels)});
+      console.log("vocab: "+correctAnswer);
+    //  console.log(data.pixels);
+    	return Object.assign({}, state, {
+			correctAnswer: 'mom'
+		});
 		
-	return Object.assign({}, state, initialState);
+    }); 
+*/
+		return Object.assign({}, state, {
+			correctAnswer: 'mom'
+		});
+		
 	}
-
-	if (action.type === SET_GUESS) {
-	console.log(state.correctAnswer);
-	
+	else if (action.type === actions.SET_GUESS) {
+		console.log("stateAnswer: "+state.correctAnswer);
+		console.log("actionGuess: "+action.guess);
+		
 		let feedback, guess, answer;
 
 		guess = action.guess.toUpperCase();

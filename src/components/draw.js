@@ -1,7 +1,12 @@
 import React from 'react';
+import axios from 'axios';
 import {connect} from 'react-redux';
 
 import './draw.css';
+
+const {API_BASE_URL} = require('../config');
+
+let canvas;
 
 export class Draw extends React.Component {
   constructor(props) {
@@ -12,8 +17,9 @@ export class Draw extends React.Component {
     }  
   }
 
+
 componentDidMount() {
-  var canvas = new window.fabric.Canvas('draw', {
+  canvas = new window.fabric.Canvas('draw', {
     isDrawingMode: true
   });
   
@@ -31,8 +37,13 @@ componentDidMount() {
 
   var debug = $('debug');
 
+  
   debug.onclick = function() {
-    console.log(JSON.stringify(canvas));
+  let jsonString = JSON.stringify(canvas);
+  let jsonObjects = JSON.parse(jsonString).objects;
+   console.log(jsonObjects);
+   //console.log(JSON.parse(jsonString).objects);
+   // console.log(JSON.stringify(canvas));
     console.log(canvas.isDrawingMode);
   };
 
@@ -40,12 +51,51 @@ componentDidMount() {
     canvas.freeDrawingBrush.color = drawingColorEl.value;
     canvas.freeDrawingBrush.width = 10;
   }
+
+
 }
 
- reset(event) {
+onSubmit(event) {
     event.preventDefault();
-    this.props.history.push(`/guess`);
+
+
+    this.props.history.push(`/nav`);
+
+
+
+    const value = this.input.value;
+    this.input.value = '';
+    this.input.focus();
+
+    console.log("submit!");
+  //  this.props.dispatch(setGuess(value));
+    //this.input.value = '';
+    //this.input.focus();
+
+  let jsonString = JSON.stringify(canvas);
+  //let jsonBody = {'pixels': '', 'accessCode': '', 'vocab': ''};
+  let jsonBody = {};
+  jsonBody.pixels = JSON.parse(jsonString).objects;
+  //jsonBody.pixels = "x y z 20 10 5";
+  //let accessCode = "11111";
+  //jsonBody.accessCode = accessCode;
+  jsonBody.vocab = value;
+
+    console.log(jsonBody);
+
+
+
+
+    axios.post(API_BASE_URL, {vocab: jsonBody.vocab, pixels: jsonBody.pixels})
+    //axios.post(API_BASE_URL, {vocab: "breakfast", pixels: jsonBody.pixels})
+      .then(res => {
+        console.log(res);
+      });
+
   }
+
+
+
 
 
   render() {
@@ -64,12 +114,28 @@ componentDidMount() {
               <input type="color" defaultValue="#665666" id="drawing-color"/><br/>
             </div>
       
-            <div>
-              <br/><br/>
+            <br/><br/>
+              
+
+            <form onSubmit={e => this.onSubmit(e)}>
               <label htmlFor="drawing-vocabulary">Vocabulary</label><br/>
-              <input type="text" id="drawing-vocabulary"/><br/>
-              <button id="submit" className="btn btn-info">Submit</button>
-            </div>
+              <input 
+                type="text" 
+                id="drawing-vocabulary"
+                ref={input => (this.input = input)}
+                required
+              />
+              <button 
+                type="submit"
+                id="submitButton" 
+                className="btn btn-info"
+              >
+                Submit
+              </button>
+            </form>
+
+
+
           </div>
         </div>
     );
