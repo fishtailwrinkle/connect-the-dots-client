@@ -2,7 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import GuessForm from './guess-form';
+import StatusSection from './status-section';
 import {restartGame} from '../actions';
+
+import './guess.css';
 
 const {API_BASE_URL} = require('../config');
 
@@ -19,8 +22,6 @@ canvas = new window.fabric.Canvas('guess', {
     isDrawingMode: false
   });
 
-  let answer, pixels;
-
   fetch(API_BASE_URL+'/random', {
   })
     .then(res => {
@@ -29,14 +30,10 @@ canvas = new window.fabric.Canvas('guess', {
       }
       return res.json();
     }).then(data => {
-      answer = data.vocab;
-      this.props.dispatch(restartGame(answer));
-      //this.props.correctAnswer = answer;
-      pixels = {"objects": JSON.parse(data.pixels)};
+      //answer = data.vocab;
+      this.props.dispatch(restartGame(data.vocab));
+      //pixels = {"objects": JSON.parse(data.pixels)};
       canvas.loadFromJSON({"objects": JSON.parse(data.pixels)});
-      
-      console.log("vocab: "+answer);
-    //  console.log(data.pixels);
     });
 
     }
@@ -50,18 +47,13 @@ canvas = new window.fabric.Canvas('guess', {
   render() {
     return (
         <div id="bd-wrapper">
-          <h2>Guess</h2><br/>
-          <canvas id="guess" width="500" height="500"></canvas>
-          <br/>
-        
+          <StatusSection />
+            <canvas id="guess" width="500" height="500"></canvas>
           <div className="canvas-container">
-            <GuessForm />
-            
-<button
-          onClick={e => this.goToGuess(e)}>Start a nw game</button>    
-        
-
+            <GuessForm /> 
           </div>
+                    <button id="new-button" onClick={e => this.goToGuess(e)}>Start a new game</button>          
+  
         </div>
     );
   }

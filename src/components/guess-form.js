@@ -17,9 +17,13 @@ export class GuessForm extends React.Component {
 	}
 	
 	render() {
+
+  let guessCount = this.props.guessCount;  
+  let guessRight = this.props.guessRight;
 		return (
 			<form onSubmit={e => this.onSubmit(e)}>
-				<input
+				{!(guessCount === 3 || guessRight === true) ?
+  					<input
 					type="text"
 					name="userGuess"
 					id="userGuess"
@@ -27,17 +31,24 @@ export class GuessForm extends React.Component {
 					ref={input => (this.input = input)}
 					required
 				/>
-				<button
+				: false}
+				{!(guessCount === 3 || guessRight === true) ?
+  				<button
 					type="submit"
 					name="submit"
 					id="guessButton"
 				>
 					Guess
 				</button>
-				
+				: false}		
 			</form>
 		);
 	}
 }
 
-export default connect()(GuessForm);
+const mapStateToProps = state => ({
+  guessRight: state.guessRight,
+  guessCount: state.guesses.length
+});
+
+export default connect(mapStateToProps)(GuessForm);

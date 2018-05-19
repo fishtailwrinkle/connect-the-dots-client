@@ -1,13 +1,11 @@
 import React from 'react';
+import { Tooltip, ButtonGroup, Button, Well, OverlayTrigger } from 'react-bootstrap';
 import './home.css';
+import InfoSection from './info-section';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-//      text: 'Test board'
-    }  
   }
 
   goToDraw(event) {
@@ -23,11 +21,15 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <h2>Welcome to Connect the Dots...</h2>
-        <button
-          onClick={e => this.goToDraw(e)}>Draw</button>    
-        <button
-          onClick={e => this.goToGuess(e)}>Guess</button>    
+        <div>
+          <Button className="home-button" bsSize="large" onClick={e => this.goToDraw(e)}>
+            Draw
+          </Button>
+          <Button className="home-button" bsSize="large" onClick={e => this.goToGuess(e)}>
+            Guess
+          </Button>
+        </div>
+        <InfoSection /> 
       </div>
     );
   }

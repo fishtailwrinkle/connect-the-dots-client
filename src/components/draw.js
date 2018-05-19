@@ -34,19 +34,7 @@ componentDidMount() {
   drawingColorEl.onchange = function() {
     canvas.freeDrawingBrush.color = this.value;
   };
-
-  var debug = $('debug');
-
   
-  debug.onclick = function() {
-  let jsonString = JSON.stringify(canvas);
-  let jsonObjects = JSON.parse(jsonString).objects;
-   console.log(jsonObjects);
-   //console.log(JSON.parse(jsonString).objects);
-   // console.log(JSON.stringify(canvas));
-    console.log(canvas.isDrawingMode);
-  };
-
   if (canvas.freeDrawingBrush) {
     canvas.freeDrawingBrush.color = drawingColorEl.value;
     canvas.freeDrawingBrush.width = 10;
@@ -66,11 +54,6 @@ onSubmit(event) {
     const value = this.input.value;
     this.input.value = '';
     this.input.focus();
-
-    console.log("submit!");
-  //  this.props.dispatch(setGuess(value));
-    //this.input.value = '';
-    //this.input.focus();
 
   let jsonString = JSON.stringify(canvas);
   //let jsonBody = {'pixels': '', 'accessCode': '', 'vocab': ''};
@@ -103,22 +86,14 @@ onSubmit(event) {
         <div id="bd-wrapper">
           <h2>Drawing</h2><br/>
           <canvas id="draw" width="500" height="500"></canvas>
-          <br/>
-        
+          
           <div className="canvas-container">
-            <button id="clear-canvas" className="btn btn-info">Clear</button><br/>
-            <button id="debug" className="btn btn-info">Display JSON</button><br/>
+            <button id="clear-canvas" className="btn btn-info">Clear</button>
+            <input type="color" className="btn" defaultValue="#665666" id="drawing-color"/>
             
-            <div>
-              <label htmlFor="drawing-color">Line color:</label>
-              <input type="color" defaultValue="#665666" id="drawing-color"/><br/>
-            </div>
-      
-            <br/><br/>
               
 
             <form onSubmit={e => this.onSubmit(e)}>
-              <label htmlFor="drawing-vocabulary">Vocabulary</label><br/>
               <input 
                 type="text" 
                 id="drawing-vocabulary"
@@ -130,7 +105,7 @@ onSubmit(event) {
                 id="submitButton" 
                 className="btn btn-info"
               >
-                Submit
+                Answer
               </button>
             </form>
 

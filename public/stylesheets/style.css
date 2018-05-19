@@ -1,31 +1,37 @@
+* {
+  font-family: 'Barlow', sans-serif;
+  margin: auto;
+}
+
+
 pre { 
   margin-left: 15px !important 
 }
 
 img {
   max-width: 799px;
-  margin: 0, auto;
+  margin: 0 auto;
 }
 
+#root {
+  margin: 0 auto;
+  max-width: 1000px;
+  
+ /* border: black 1px solid;*/
+}
+
+
 body {
-  /*background-image: url("../images/pencil.jpg");*/
+  text-align: center;
   background-repeat: no-repeat;
-  background-size: 100%;
   background-position: center;
 }
 
-#drawing-mode {
-  margin-bottom: 10px;
-  vertical-align: top;
-}
 
 #drawing-mode-options {
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 10px;
-  margin-top: 10px;
   background: #f5f2f0;
-  padding: 10px;
 }
 
 label {
@@ -36,8 +42,4 @@ label {
   display: inline-block;
   width: 25px;
   background: #ffc;
-}
-
-#bd-wrapper {
-  min-width: 1500px;
 }

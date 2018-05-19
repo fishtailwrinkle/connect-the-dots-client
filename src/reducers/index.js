@@ -2,9 +2,11 @@ import * as actions from '../actions';
 const {API_BASE_URL} = require('../config');
 
 const initialState = {
-	correctAnswer: 'book',
-	pixels: 'none',
-	guess: []
+	guessRight: false,
+	correctAnswer: '',
+	pixels: '',
+	feedback: 'Make your guess!',
+	guesses: []
 };
 
 export const reducer = (state=initialState, action) => {
@@ -17,7 +19,11 @@ export const reducer = (state=initialState, action) => {
 	
 
 		return Object.assign({}, state, {
-			correctAnswer: action.correctAnswer
+			guessRight: false,
+			feedback: 'Make your guess!',
+			correctAnswer: action.correctAnswer,
+			pixels: '',
+			guesses: []
 		});
 		
 	}
@@ -25,26 +31,28 @@ export const reducer = (state=initialState, action) => {
 		console.log("stateAnswer: "+state.correctAnswer);
 		console.log("actionGuess: "+action.guess);
 		
-		let feedback, guess, answer;
+		let feedback, guess, answer, guessRight;
 
 		guess = action.guess.toUpperCase();
 		answer = state.correctAnswer.toUpperCase();
 
 		console.log("guess="+guess+" - answer="+answer);
 
-
 		if (guess === answer) {
+			guessRight = true;
 			feedback = 'You got it!';
 		}
 		else {
-			feedback = 'Google it!';
+			guessRight = false;
+			feedback = 'Ask a friend!';
 		}
 
 		console.log(feedback);
 
 		return Object.assign({}, state, {
+			guessRight,
 			feedback,
-			guess: [...state.guess, guess]
+			guesses: [...state.guesses, guess]
 		});
 	}
 	

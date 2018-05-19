@@ -1,3 +1,18 @@
+
 h2 {
 	color: #ffffff;
+}
+
+
+
+.home-page {
+	display: inline-block;
+	width: 80%;
+	margin: auto;
+	border: solid black 1px;
+}
+
+.home-button {
+
+	width: 50%;
 }
