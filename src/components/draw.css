@@ -1,16 +1,22 @@
 
+h2 {
+	margin-left: 1em;
+	margin-right: 1em;
+	text-align: left;
+  
+}
 
 .canvas-container {
-	  display: inline-block;
-width: 85%;
-		border:1px solid #aaa;
-text-align: left;
-padding-top: 3px;
-padding-bottom: 3px;
+	display: inline-block;
+	width: 85%;
+	border:1px solid #aaa;
+	text-align: left;
+	padding-top: 3px;
+	padding-bottom: 3px;
 }
 
 canvas {
-	border:1px solid #aaa;
+	border: 1px solid black;
 }
 
 #bd-wrapper {

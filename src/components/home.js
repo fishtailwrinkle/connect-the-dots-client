@@ -21,11 +21,13 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
+        <img width="100%" src="./images/pencil.jpg" />
+    
         <div>
-          <Button className="home-button" bsSize="large" onClick={e => this.goToDraw(e)}>
+          <Button className="col-6 home-button" bsSize="large" onClick={e => this.goToDraw(e)}>
             Draw
           </Button>
-          <Button className="home-button" bsSize="large" onClick={e => this.goToGuess(e)}>
+          <Button className="col-6 home-button" bsSize="large" onClick={e => this.goToGuess(e)}>
             Guess
           </Button>
         </div>

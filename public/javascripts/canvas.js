@@ -4,9 +4,6 @@
   var canvas = this.__canvas = new fabric.Canvas('c', {
     isDrawingMode: true
   });
- 
-/*canvas.loadFromJSON('{"objects":[{"type":"path","version":"2.2.3","originX":"left","originY":"top","left":163.25685258964143,"top":272.04046812749004,"width":0.06,"height":0.06,"fill":null,"stroke":"#ff0000","strokeWidth":30,"strokeDashArray":null,"strokeLineCap":"round","strokeLineJoin":"round","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"path":[["M",178.25685258964143,287.04046812749004],["L",178.31685258964143,287.10046812749]]},{"type":"path","version":"2.2.3","originX":"left","originY":"top","left":163.25685258964143,"top":272.04046812749004,"width":0.06,"height":0.06,"fill":null,"stroke":"#ff0000","strokeWidth":30,"strokeDashArray":null,"strokeLineCap":"round","strokeLineJoin":"round","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"path":[["M",178.25685258964143,287.04046812749004],["L",178.31685258964143,287.10046812749]]}]}');
-*/
   
   fabric.Object.prototype.transparentCorners = false;
 
@@ -21,6 +18,7 @@
     canvas.freeDrawingBrush.color = this.value;
   };
 
+  
 /*  
   drawingLineWidthEl.onchange = function() {
     canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;

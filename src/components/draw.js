@@ -6,23 +6,29 @@ import './draw.css';
 
 const {API_BASE_URL} = require('../config');
 
-let canvas;
+let canvas, naturalWidth, naturalHeight;
 
 export class Draw extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-//      text: 'Test board'
-    }  
+
   }
 
+updateCanvasDimensions() {
+  naturalWidth = 0.8*document.getElementById("bd-wrapper").clientWidth;
+  naturalHeight = naturalWidth;
+
+  canvas.setDimensions({width: naturalWidth, height:naturalHeight});
+}
 
 componentDidMount() {
   canvas = new window.fabric.Canvas('draw', {
     isDrawingMode: true
   });
   
+  this.updateCanvasDimensions();
+  window.addEventListener("resize", this.updateCanvasDimensions);
+
   var $ = function(id){return document.getElementById(id)};
 
   var drawingColorEl = $('drawing-color'),
@@ -39,9 +45,12 @@ componentDidMount() {
     canvas.freeDrawingBrush.color = drawingColorEl.value;
     canvas.freeDrawingBrush.width = 10;
   }
-
-
 }
+
+componentWillUnmount() {
+  window.removeEventListener("resize", this.updateCanvasDimensions);
+}
+
 
 onSubmit(event) {
     event.preventDefault();
@@ -81,12 +90,13 @@ onSubmit(event) {
 
 
 
-  render() {
+  render() {  
     return (
         <div id="bd-wrapper">
-          <h2>Drawing</h2><br/>
-          <canvas id="draw" width="500" height="500"></canvas>
-          
+          <h2>Create a new drawing for other players to guess what it is.</h2><br/>
+
+          <canvas id="draw" ></canvas>;
+
           <div className="canvas-container">
             <button id="clear-canvas" className="btn btn-info">Clear</button>
             <input type="color" className="btn" defaultValue="#665666" id="drawing-color"/>
