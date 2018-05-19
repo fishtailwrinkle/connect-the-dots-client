@@ -7,16 +7,10 @@ h2 {
 }
 
 .canvas-container {
-	display: inline-block;
-	width: 85%;
-	border:1px solid #aaa;
-	text-align: left;
-	padding-top: 3px;
-	padding-bottom: 3px;
 }
 
 canvas {
-	border: 1px solid black;
+	border: 1px solid #aaa;
 }
 
 #bd-wrapper {
@@ -27,11 +21,10 @@ canvas {
 
 }
 
-#drawing-color, #clear-canvas {
-	float: right;
+#drawing-color {
+ /* width: 20% !important;*/
+  margin: 1em auto;
 }
-
-
 
 
 

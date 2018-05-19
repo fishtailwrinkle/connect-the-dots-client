@@ -9,6 +9,6 @@ h2 {
 	display: inline-block;
 	width: 80%;
 	margin: 0 auto;
-	border: solid black 1px;
+	border: solid 1px #aaa;
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import { Tooltip, InputGroup, Button, Form, FormGroup, FormControl } from 'react-bootstrap';
 
 import './draw.css';
 
@@ -11,7 +12,6 @@ let canvas, naturalWidth, naturalHeight;
 export class Draw extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
 updateCanvasDimensions() {
@@ -55,14 +55,18 @@ componentWillUnmount() {
 onSubmit(event) {
     event.preventDefault();
 
-
     this.props.history.push(`/nav`);
 
+    const value = this.textInput.value;
+    this.textInput.value = "";
+    this.textInput.focus();
 
-
+    /*
     const value = this.input.value;
     this.input.value = '';
     this.input.focus();
+*/
+
 
   let jsonString = JSON.stringify(canvas);
   //let jsonBody = {'pixels': '', 'accessCode': '', 'vocab': ''};
@@ -73,54 +77,38 @@ onSubmit(event) {
   //jsonBody.accessCode = accessCode;
   jsonBody.vocab = value;
 
-    console.log(jsonBody);
-
-
-
-
     axios.post(API_BASE_URL, {vocab: jsonBody.vocab, pixels: jsonBody.pixels})
     //axios.post(API_BASE_URL, {vocab: "breakfast", pixels: jsonBody.pixels})
       .then(res => {
         console.log(res);
       });
-
   }
-
-
-
-
 
   render() {  
     return (
         <div id="bd-wrapper">
           <h2>Create a new drawing for other players to guess what it is.</h2><br/>
-
           <canvas id="draw" ></canvas>;
-
-          <div className="canvas-container">
-            <button id="clear-canvas" className="btn btn-info">Clear</button>
-            <input type="color" className="btn" defaultValue="#665666" id="drawing-color"/>
-            
-              
-
-            <form onSubmit={e => this.onSubmit(e)}>
-              <input 
-                type="text" 
-                id="drawing-vocabulary"
-                ref={input => (this.input = input)}
-                required
-              />
-              <button 
-                type="submit"
-                id="submitButton" 
-                className="btn btn-info"
-              >
-                Answer
-              </button>
-            </form>
-
-
-
+          <div className="canvas-container" >
+         
+            <Form inline onSubmit={e => this.onSubmit(e)}>
+              <FormGroup>
+              <InputGroup>
+                <FormControl type="color" defaultValue="#665666" id="drawing-color"/>
+                <InputGroup.Button>
+                  <Button type="button" id="clear-canvas">Clear</Button>
+                </InputGroup.Button>    
+              </InputGroup> 
+              <InputGroup>
+                <InputGroup.Addon>Answer</InputGroup.Addon>
+                <FormControl inputRef={input => this.textInput = input} type="text" required/>
+              </InputGroup>
+              </FormGroup>
+              <InputGroup.Button>
+                <Button type="submit">Submit</Button>
+              </InputGroup.Button>
+            </Form>
+            <br/>
           </div>
         </div>
     );
