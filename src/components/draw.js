@@ -14,7 +14,7 @@ export class Draw extends React.Component {
   }
 
 updateCanvasDimensions() {
-  naturalWidth = 0.8*document.getElementById("bd-wrapper").clientWidth;
+  naturalWidth = 0.94*document.getElementById("bd-wrapper").clientWidth;
   naturalHeight = naturalWidth;
   canvas.setDimensions({width: naturalWidth, height:naturalHeight});
 }

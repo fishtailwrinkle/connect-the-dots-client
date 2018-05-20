@@ -7,7 +7,7 @@ h2 {
 }
 
 .canvas-container {
-	width: 80%;
+	width: 94%;
 }
 
 canvas {
@@ -15,7 +15,7 @@ canvas {
 }
 
 #bd-wrapper {
-	width: 60%;
+	width: 98%;
 	border: 1px solid #aaa;
 }
 

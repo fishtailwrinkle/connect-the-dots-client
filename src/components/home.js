@@ -32,6 +32,7 @@ export default class Home extends React.Component {
           </Button>
         </div>
         <InfoSection /> 
+        <a href="https://www.freepik.com" target="_blank">Image by Freepik</a>
       </div>
     );
   }
