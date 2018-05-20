@@ -6,7 +6,7 @@ import {restartGame} from '../actions';
 export function Nav(props) {
 	return (
 		<div>
-			<h1>Nice drawing!</h1>
+			<h1>Thanks for submitting your awesome drawing!</h1>
 		</div>
 	);
 }

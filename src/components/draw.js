@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import { Tooltip, InputGroup, Button, Form, FormGroup, FormControl } from 'react-bootstrap';
-
 import './draw.css';
 
 const {API_BASE_URL} = require('../config');
@@ -17,7 +16,6 @@ export class Draw extends React.Component {
 updateCanvasDimensions() {
   naturalWidth = 0.8*document.getElementById("bd-wrapper").clientWidth;
   naturalHeight = naturalWidth;
-
   canvas.setDimensions({width: naturalWidth, height:naturalHeight});
 }
 
@@ -61,13 +59,6 @@ onSubmit(event) {
     this.textInput.value = "";
     this.textInput.focus();
 
-    /*
-    const value = this.input.value;
-    this.input.value = '';
-    this.input.focus();
-*/
-
-
   let jsonString = JSON.stringify(canvas);
   //let jsonBody = {'pixels': '', 'accessCode': '', 'vocab': ''};
   let jsonBody = {};
@@ -88,8 +79,8 @@ onSubmit(event) {
     return (
         <div id="bd-wrapper">
           <h2>Create a new drawing for other players to guess what it is.</h2><br/>
-          <canvas id="draw" ></canvas>;
-          <div className="canvas-container" >
+          <canvas id="draw"></canvas>
+          <div className="canvas-container">
          
             <Form inline onSubmit={e => this.onSubmit(e)}>
               <FormGroup>

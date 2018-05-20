@@ -7,6 +7,7 @@ h2 {
 }
 
 .canvas-container {
+	width: 80%;
 }
 
 canvas {
@@ -14,11 +15,8 @@ canvas {
 }
 
 #bd-wrapper {
-
 	width: 60%;
 	border: 1px solid #aaa;
-
-
 }
 
 #drawing-color {

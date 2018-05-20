@@ -5,15 +5,13 @@
 }
 
 .canvas-container {
-	  display: inline-block;
-width: 70%;
-text-align: left;
-padding: 0;
-margin: 0;
-vertical-align: top;
+	width: 80%;
+	margin: 0 auto;
+	padding: 0;
+
 }
 
 #new-button {
-	float: right;
-margin-top: 3px;
+ /* width: 20% !important;*/
+  margin: 1em auto;
 }

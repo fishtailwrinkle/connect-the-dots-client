@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Tooltip, InputGroup, Button, Form, FormGroup, FormControl } from 'react-bootstrap';
 import {setGuess, restartGame} from '../actions';
+import './guess-form.css'
 
 export class GuessForm extends React.Component {
 	constructor(props) {
@@ -10,38 +12,29 @@ export class GuessForm extends React.Component {
   	onSubmit(event) {
 		event.preventDefault();
 		
-		const value = this.input.value;	
+		const value = this.textInput.value;	
 		this.props.dispatch(setGuess(value));
-		this.input.value = '';
-		this.input.focus();
+		this.textInput.value = '';
+		this.textInput.focus();
 	}
 	
 	render() {
-
-  let guessCount = this.props.guessCount;  
-  let guessRight = this.props.guessRight;
+		let guessCount = this.props.guessCount;  
+		let guessRight = this.props.guessRight;
+		
 		return (
-			<form onSubmit={e => this.onSubmit(e)}>
-				{!(guessCount === 3 || guessRight === true) ?
-  					<input
-					type="text"
-					name="userGuess"
-					id="userGuess"
-					autoComplete="on"
-					ref={input => (this.input = input)}
-					required
-				/>
-				: false}
-				{!(guessCount === 3 || guessRight === true) ?
-  				<button
-					type="submit"
-					name="submit"
-					id="guessButton"
-				>
-					Guess
-				</button>
-				: false}		
-			</form>
+			<Form inline onSubmit={e => this.onSubmit(e)}>
+	        	{!(guessCount === 3 || guessRight === true) ?
+	 				<FormGroup>
+		              	<InputGroup>
+		                	<FormControl id="user-guess" inputRef={input => this.textInput = input} type="text" required/>
+		              		<InputGroup.Button>
+		                		<Button id="guess-button" type="submit">Guess</Button>
+		              		</InputGroup.Button> 
+	              		</InputGroup>
+	              	</FormGroup>
+	            : false}
+			</Form>
 		);
 	}
 }

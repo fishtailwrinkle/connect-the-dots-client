@@ -20,7 +20,7 @@ export function Feedback(props) {
   
   if (guessRight === false) {
     if (key === 0) {
-      guessFeedback = <span>You have 3 guesses!</span>;
+      guessFeedback = <span>Guess a word to describe what the drawing is about. You will have 3 guesses.</span>;
     }
     else if (key > 0 && key < 3) {
     }
