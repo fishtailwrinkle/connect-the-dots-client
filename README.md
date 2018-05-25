@@ -6,13 +6,13 @@ https://connect-the-dots.netlify.com
 
 # Screenshots
 Home Page to Start the App
-https://github.com/fishtailwrinkle/capstone2/blob/master/public/images/home.JPG
+https://github.com/fishtailwrinkle/connect-the-dots-client/blob/master/public/images/home.JPG?raw=true
 
 Draw - Example
-https://github.com/fishtailwrinkle/capstone2/blob/master/public/images/draw.JPG
+https://github.com/fishtailwrinkle/connect-the-dots-client/blob/master/public/images/draw.JPG?raw=true
 
 Guess - Example
-https://github.com/fishtailwrinkle/capstone2/blob/master/public/images/guess.JPG
+https://github.com/fishtailwrinkle/connect-the-dots-client/blob/master/public/images/guess.JPG?raw=true
 
 # Summary
 "Connect the Dots..." is an interactive app that allows people to share and appreciate the artistic creativities via creating drawings on a digital canvas. Users are encouraged to create a drawing and use an English vocabulary to describe what it is, then invite others to play the game by guessing the correct vocabulary represents the drawing. 
